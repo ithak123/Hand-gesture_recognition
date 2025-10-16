@@ -1,0 +1,45 @@
+# -----------------------------
+# 🧠 Python / Deep Learning
+# -----------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.pt
+*.h5
+*.ckpt
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Virtual environment
+venv/
+.env/
+.envrc
+
+# Datasets and outputs
+data/
+saved_models/
+outputs/
+*.csv
+*.npy
+*.npz
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# -----------------------------
+# 🧰 IDEs and Editors
+# -----------------------------
+# PyCharm / JetBrains
+.idea/
+*.iml
+
+# VSCode
+.vscode/
+
+# -----------------------------
+# 🐳 Docker
+# ---------------------------
