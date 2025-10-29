@@ -1,9 +1,9 @@
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import os, random
+from model.config.config import BASE_PATH ,IMG_SIZE, BATCH_SIZE, NUM_WORKERS
 
-
-def get_transforms(img_size=96):
+def get_transforms(img_size=IMG_SIZE):
 
     return transforms.Compose([
         transforms.Grayscale(num_output_channels=1),# אנחנו רוצים ערוץ אחד
@@ -13,7 +13,7 @@ def get_transforms(img_size=96):
     ])
 
 
-def laod_dataset(base_path, img_size=96):
+def laod_dataset(base_path=BASE_PATH, img_size=IMG_SIZE):
 
     transform = get_transforms(img_size)
 
@@ -49,7 +49,7 @@ def laod_dataset(base_path, img_size=96):
 
 
 #יצירת 3 דאטה לאודרים (מנהלים את הדאטה לאימון)
-def get_dataloaders(train_ds, val_ds, test_ds, batch_size=32, num_workers=0):
+def get_dataloaders(train_ds, val_ds, test_ds, batch_size=BATCH_SIZE, num_workers=NUM_WORKERS):
 
     train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True, num_workers=num_workers)
     val_loader = DataLoader(val_ds, batch_size=batch_size,shuffle=False, num_workers=num_workers)
@@ -59,15 +59,14 @@ def get_dataloaders(train_ds, val_ds, test_ds, batch_size=32, num_workers=0):
 
 
 #ונקציית הMAIN
-def prepare_data(base_path, img_size=96, batch_size=32, num_workers=0):
+def prepare_data(base_path=BASE_PATH, img_size=IMG_SIZE, batch_size=BATCH_SIZE, num_workers=0):
 
     train_ds, val_ds, test_ds = laod_dataset(base_path, img_size=img_size)
     return get_dataloaders(train_ds, val_ds, test_ds, batch_size=batch_size, num_workers=num_workers)
 
 
 if __name__ == "__main__":
-    BASE_PATH =r"C:\Users\ithak\PycharmProjects\Hand-gesture_recognition\model\data\data_split"
-    train_loader, val_loader, test_loader = prepare_data(BASE_PATH)
+    train_loader, val_loader, test_loader = prepare_data()
 
     # דוגמה לבדיקה: קבלת באצ' ראשון
     images, labels = next(iter(train_loader))
